@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import { REACT_APP_ENV } from './config'
+console.log('环境', REACT_APP_ENV)
 class App extends Component {
   render() {
     return (
