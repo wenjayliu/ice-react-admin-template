@@ -4,7 +4,7 @@
 import { Switch, Route, HashRouter as Router } from 'react-router-dom';
 import React from 'react';
 
-import routerConfig from './routerConfig';
+import routerConfig from '@src/routerConfig';
 
 /**
  * 将路由信息扁平化，继承上一级路由的 path

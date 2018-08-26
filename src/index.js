@@ -1,6 +1,4 @@
-// import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from './App';
-import router from './router';
+import router from './routes';
 
 ReactDOM.render(router, document.getElementById('root'));
