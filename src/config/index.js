@@ -1,6 +1,8 @@
 
 export const REACT_APP_ENV = require(`./env/env.${process.env.REACT_APP_ENV}`)
 
+export const BASC_URL = REACT_APP_ENV.BASC_API
+
 // axios 默认配置
 export const AXIOS_DEFAULT_CONFIG = {
     timeout: 20000,

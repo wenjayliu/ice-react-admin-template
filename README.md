@@ -21,6 +21,7 @@
 
 ```js
 REACT_APP_ENV = $REACT_APP_ENV
+
 ```
 
 `src/config/index.js`
@@ -112,3 +113,25 @@ src
 └── routerConfig.js // 路由表 （iceworks 检测关键字）
 ```
 
+### `proxy` 代理配置
+方案一
+修改 `package.json` 全局匹配 `/sys` 
+```json
+{
+  "name": "@icedesign/scaffold-create-react-app",
+  "version": "1.0.0",
+  
+  // ...
+
+  "title": "ice-react-admin-template",
+  "proxy": {
+    "/sys": {
+      "target": "https://www.easy-mock.com/mock/5b7a3d36c474816c61856f60/proman",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/authApi": ""
+      }
+    }
+  }
+}
+```

@@ -53,5 +53,28 @@
   "engines": {
     "node": ">=8.0.0"
   },
-  "title": "ice-react-admin-template"
+  "title": "ice-react-admin-template",
+  "proxy": {
+    "/facApi": {
+      "target": "http://基础接口地址.com",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/facapi": ""
+      }
+    },
+    "/authApi": {
+      "target": "http://其他接口.com",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/authApi": ""
+      }
+    },
+    "/easymockApi": {
+      "target": "https://www.easy-mock.com/mock",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/easymockApi": ""
+      }
+    }
+  }
 }
