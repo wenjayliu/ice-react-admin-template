@@ -5,12 +5,18 @@
 import BasicLayout from './layouts/BasicLayout';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import EveryDadyCount from './pages/EveryDadyCount';
 
 const routerConfig = [
   {
     path: '/',
     layout: BasicLayout,
     component: Home,
+  },
+  {
+    path: '/EveryDadyCount',
+    layout: BasicLayout,
+    component: EveryDadyCount,
   },
   {
     path: '*',

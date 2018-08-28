@@ -25,22 +25,24 @@ export function responseSuccessFunc (responseObj) {
     // }
     
     let resData =  responseObj.data
-    let {code} = resData
+    let code = resData.code || resData.status
     
     switch(code) {
         case 200: // 如果业务成功，直接进成功回调200
-            console.log(200)
-            return resData.data;
+            console.log(responseObj)
+            console.log(responseObj.config)
+            return resData;
         default:
-            console.log('code非200', resData)
+            console.log('拦截器code非200', resData)
             // 业务中还会有一些特殊 code 逻辑，我们可以在这里做统一处理，也可以下方它们到业务层
             // !responseObj.config.noShowDefaultError && GLOBAL.vbus.$emit('global.$dialog.show', resData.msg);
             return Promise.reject(resData);
     }
 }
 
-// 响应失败，可根据 responseError.message 和 responseError.response.status 来做监控处理
+// 响应失败，(断网500, 接口报错404) 可根据 responseError.message 和 responseError.response.status 来做监控处理
 export function responseFailFunc (responseError) {
-    console.log('请求失败', responseError)
+    console.log('响应失败', responseError)
+    alert(responseError.response.status)
     return Promise.reject(responseError);
 }

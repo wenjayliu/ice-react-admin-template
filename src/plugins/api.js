@@ -1,14 +1,14 @@
 import axios from '@src/plugins/axios'
 import { BASC_URL } from '@src/config'
 
-const MakeApi = (apiconfig, options) => {
-  console.log('api', options)
+const MakeApi = (options) => {
+  // console.log('api', options)
   if (options && options.BASC_URL) {
-    apiconfig.url = options.BASC_URL + apiconfig.url
+    options.url = options.BASC_URL + options.url
   } else {
-    apiconfig.url = BASC_URL + apiconfig.url
+    options.url = BASC_URL + options.url
   }
-  return axios(apiconfig)
+  return axios(options)
 }
 
 

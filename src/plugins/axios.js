@@ -11,7 +11,7 @@ axiosInstance = axios.create(AXIOS_DEFAULT_CONFIG)
 axiosInstance
     .interceptors.request.use(requestSuccessFunc, requestFailFunc)
 
-// 注入失败拦截
+// 注入响应拦截
 axiosInstance
     .interceptors.response.use(responseSuccessFunc, responseFailFunc)
 

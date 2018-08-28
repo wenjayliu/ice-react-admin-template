@@ -3,8 +3,9 @@ const { injectBabelPlugin, paths } = require('react-app-rewired');
 const rewireAliases = require('react-app-rewire-aliases');
 const WebpackPluginImport = require('webpack-plugin-import');
 const rewireSass = require('./rewire-scss');
+const rewireMobX = require('react-app-rewire-mobx');
 
-module.exports = function override(config) {
+module.exports = function override(config, env) {
   config = injectBabelPlugin(
     ['import', { libraryName: '@icedesign/base' }],
     config
@@ -25,7 +26,7 @@ module.exports = function override(config) {
       },
     ])
   );
-
+  config = rewireMobX(config, env);
   config = rewireSass(config);
 
   return config;

@@ -21,7 +21,7 @@ class App extends Component {
     // init method will load CLDR locale data according to currentLocale
     // react-intl-universal is singleton, so you should init it only once in your app
     intl.init({
-      currentLocale: 'en-US', // TODO: determine locale here
+      currentLocale: 'zh-CN', // TODO: determine locale here
       locales,
     })
     .then(() => {

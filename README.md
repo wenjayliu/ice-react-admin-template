@@ -106,15 +106,15 @@ src
 ├── pages           // 视图层 （iceworks 检测关键字）
 ├── plugins         // 插件相关、请求、store 等实例
 ├── routes          // 路由配置
+├── styles          // 全局样式文件
 ├── service         // 服务层
 ├── utils           // 工具类
-├── App.js          // 工具类
+├── App.js          // 入库组件
 ├── index.js        // 项目入口文件
 └── routerConfig.js // 路由表 （iceworks 检测关键字）
 ```
 
 ### `proxy` 代理配置
-方案一
 修改 `package.json` 全局匹配 `/sys` 
 ```json
 {
@@ -125,13 +125,96 @@ src
 
   "title": "ice-react-admin-template",
   "proxy": {
-    "/sys": {
-      "target": "https://www.easy-mock.com/mock/5b7a3d36c474816c61856f60/proman",
+    "/facApi": {
+      "target": "http://基础接口地址.com",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/facapi": ""
+      }
+    },
+    "/authApi": {
+      "target": "http://其他接口.com",
       "changeOrigin": true,
       "pathRewrite": {
         "^/authApi": ""
+      }
+    },
+    "/easymockApi": {
+      "target": "https://www.easy-mock.com/mock",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/easymockApi": ""
       }
     }
   }
 }
 ```
+`config/env/env.dev.js`  在开发环境配置基础接口地址
+
+```js
+/**
+ * 开发环境相关配置
+ * 接口使用 package.json 代理
+ */
+
+module.exports = {
+    BASC_API: '/facApi',
+    AUTH_API: '/authApi',
+    EASYMOCK_API: '/easymockApi'
+}
+
+```
+
+二次封装 `axios` 先简单的封装下，目的是不直接调用 `axios` 所有接口都会通过 `plugins/api.js` 配置后再创建 `axios` 请求，这样可以方便的管理每一个接口使用不同的基础地址。
+
+```js
+import axios from '@src/plugins/axios'
+import { BASC_URL } from '@src/config'
+
+const MakeApi = (apiconfig, options) => {
+  console.log('api', options)
+  if (options && options.BASC_URL) {
+    apiconfig.url = options.BASC_URL + apiconfig.url
+  } else {
+    apiconfig.url = BASC_URL + apiconfig.url
+  }
+  return axios(apiconfig)
+}
+
+
+export default MakeApi
+```
+
+使用接口，`api/user.js` 
+
+```js
+// import axios from '@src/plugins/axios'
+import Mock from 'mockjs'
+import api from '@src/plugins/api'
+import { REACT_APP_ENV } from '@src/config'
+
+import { loginMockData } from '@src/api/userMock'
+
+Mock.mock(/\/mockapi\/sys\/user\/getUserInfo/, 'get', loginMockData)
+export async function basicapi(params) {
+  return api({
+    url: '/sys/user/getUserInfo',
+    method: 'get',
+    data: params
+  })
+}
+
+export async function login(params) {
+  return api({
+    url: '/sys/user/getUserInfo',
+    method: 'get',
+    data: params
+  }, {
+      BASC_URL: REACT_APP_ENV.AUTH_API
+  })
+}
+
+```
+
+
+
