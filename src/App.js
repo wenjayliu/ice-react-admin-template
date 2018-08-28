@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { REACT_APP_ENV } from './config'
 import intl from 'react-intl-universal';
 
 // locale data
 const locales = {
-  "en-US": require('./locales/en-US.json'),
-  "zh-CN": require('./locales/zh-CN.json')
+  "en-US": require('@src/locales/en-US.json'),
+  "zh-CN": require('@src/locales/zh-CN.json')
 }
-console.log('环境', REACT_APP_ENV)
 console.log('语言', locales)
 
 class App extends Component {

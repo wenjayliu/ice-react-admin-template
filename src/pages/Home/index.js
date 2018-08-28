@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-// import App from '@src/App'
+import asyncComponent from '@src/utils/asyncComponent';
+const App = asyncComponent(() => import('@src/App'));
+
 export default class Home extends Component {
   componentDidMount() {
   }
@@ -7,7 +9,7 @@ export default class Home extends Component {
     return (
       <div className="home-page">
         home
-        {/* <App /> */}
+        <App />
       </div>
     )
   }
