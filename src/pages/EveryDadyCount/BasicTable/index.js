@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import intl from 'react-intl-universal';
+import React, { Component } from 'react'
+import intl from 'react-intl-universal'
 
 export default class BasicTable extends Component {
   render() {

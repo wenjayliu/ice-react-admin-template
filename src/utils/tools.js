@@ -1,20 +1,20 @@
 export function getNumb() {
-    // var num = new Array();
-    var num = [];
+    // var num = new Array()
+    var num = []
     for (var i = 0; i < 10; i++) {
-        var val = Math.ceil(Math.random() * 30);
-        var isEqu = false;
+        var val = Math.ceil(Math.random() * 30)
+        var isEqu = false
         for (var idx in num) {
             if (num[idx] === val) {
-                isEqu = true;
-                break;
+                isEqu = true
+                break
             }
         }
-        if (isEqu) i--;
-        else num[num.length] = val;
+        if (isEqu) i--
+        else num[num.length] = val
     }
-    return num;
-};
+    return num
+}
 
 // scrollTop animation
 export function scrollTop(el, from = 0, to, duration = 500) {
@@ -24,29 +24,29 @@ export function scrollTop(el, from = 0, to, duration = 500) {
             window.mozRequestAnimationFrame ||
             window.msRequestAnimationFrame ||
             function(callback) {
-                return window.setTimeout(callback, 1000 / 60);
+                return window.setTimeout(callback, 1000 / 60)
             }
-        );
+        )
     }
-    const difference = Math.abs(from - to);
-    const step = Math.ceil(difference / duration * 50);
+    const difference = Math.abs(from - to)
+    const step = Math.ceil(difference / duration * 50)
 
     function scroll(start, end, step) {
-        if (start === end) return;
+        if (start === end) return
 
-        let d = (start + step > end) ? end : start + step;
+        let d = (start + step > end) ? end : start + step
         if (start > end) {
-            d = (start - step < end) ? end : start - step;
+            d = (start - step < end) ? end : start - step
         }
 
         if (el === window) {
-            window.scrollTo(d, d);
+            window.scrollTo(d, d)
         } else {
-            el.scrollTop = d;
+            el.scrollTop = d
         }
-        window.requestAnimationFrame(() => scroll(d, end, step));
+        window.requestAnimationFrame(() => scroll(d, end, step))
     }
-    scroll(from, to, step);
+    scroll(from, to, step)
 }
 
 export function assert(condition, msg) {

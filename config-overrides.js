@@ -4,8 +4,16 @@ const rewireAliases = require('react-app-rewire-aliases');
 const WebpackPluginImport = require('webpack-plugin-import');
 const rewireSass = require('./rewire-scss');
 const rewireMobX = require('react-app-rewire-mobx');
+const rewireEslint = require('react-app-rewire-eslint');
+
+function overrideEslintOptions(options) {
+  // do stuff with the eslint options...
+  return options;
+}
 
 module.exports = function override(config, env) {
+  config = rewireEslint(config, env, overrideEslintOptions);
+
   config = injectBabelPlugin(
     ['import', { libraryName: '@icedesign/base' }],
     config

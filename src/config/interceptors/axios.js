@@ -11,7 +11,7 @@ export function requestSuccessFunc (requestObj) {
 export function requestFailFunc (requestError) {
     // ...
     
-    return Promise.reject(requestError);
+    return Promise.reject(requestError)
 }
 
 // 自定义响应成功逻辑，全局拦截接口，根据不同业务做不同处理，响应成功监控等
@@ -36,7 +36,7 @@ export function responseSuccessFunc (responseObj) {
             console.log('拦截器code非200', resData)
             // 业务中还会有一些特殊 code 逻辑，我们可以在这里做统一处理，也可以下方它们到业务层
             // !responseObj.config.noShowDefaultError && GLOBAL.vbus.$emit('global.$dialog.show', resData.msg);
-            return Promise.reject(resData);
+            return Promise.reject(resData)
     }
 }
 
@@ -44,5 +44,5 @@ export function responseSuccessFunc (responseObj) {
 export function responseFailFunc (responseError) {
     console.log('响应失败', responseError)
     alert(responseError.response.status)
-    return Promise.reject(responseError);
+    return Promise.reject(responseError)
 }

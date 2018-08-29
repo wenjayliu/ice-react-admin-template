@@ -1,16 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'mobx-react';
-import stores from '@src/stores'
-import router from './routes';
-import 'normalize.css/normalize.css'// A modern alternative to CSS resets
-import '@src/styles/index.scss'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from '@src/App'
+// import 'normalize.css/normalize.css'// CSS重置
+// import '@src/styles/index.scss' // 全局自定义 css
 
-// console.log('路由表', stores)
-
-// const stores = {}
-
-ReactDOM.render(
-  <Provider {...stores}>
-    {router}
-  </Provider>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'))

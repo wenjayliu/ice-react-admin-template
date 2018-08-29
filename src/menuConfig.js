@@ -18,7 +18,7 @@ const headerMenuConfig = [
     newWindow: true,
     icon: 'bangzhu',
   },
-];
+]
 
 // 侧边导航配置
 const asideMenuConfig = [
@@ -28,23 +28,23 @@ const asideMenuConfig = [
     icon: 'home',
   },
   {
-    name: '表格页',
-    path: '/table',
-    icon: 'table',
-    authority: 'admin',
+    name: '测试页',
+    path: '/TestPages',
+    icon: 'TestPages',
+    authority: ['66'],
     children: [
       {
         name: '基础表格',
-        path: '/table/basic-table',
+        path: '/TestPages/basic-table',
         authority: 'admin',
       },
       {
         name: '常用竖向表格',
         path: '/table/table-display',
-        authority: 'user',
+        authority: ['66'],
       },
     ],
-  }
-];
+  },
+]
 
-export { headerMenuConfig, asideMenuConfig };
+export { headerMenuConfig, asideMenuConfig }

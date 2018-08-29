@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import BasicTable from './BasicTable'
-import intl from 'react-intl-universal';
+import intl from 'react-intl-universal'
 // locale data
 const locales = {
   "en-US": require('@src/locales/en-US.json'),
@@ -15,7 +15,7 @@ export default class EveryDadyCount extends Component {
     })
       .then(() => {
         // After loading CLDR locale data, start to render
-        this.setState({ initDone: true });
+        this.setState({ initDone: true })
       });
   }
 

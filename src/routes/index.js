@@ -1,29 +1,29 @@
 /**
  * 定义应用路
  */
-import { Switch, Route, HashRouter as Router } from 'react-router-dom';
-import React from 'react';
+import { Switch, Route, HashRouter as Router } from 'react-router-dom'
+import React from 'react'
 
-import routerConfig from '@src/routerConfig';
+import routerConfig from '@src/routerConfig'
 
 /**
  * 将路由信息扁平化，继承上一级路由的 path
  * @param {Array} config 路由配置
  */
 function recursiveRouterConfigV4(config = []) {
-  const routeMap = [];
+  const routeMap = []
   config.forEach((item) => {
     const route = {
       path: item.path,
       layout: item.layout,
       component: item.component,
-    };
-    if (Array.isArray(item.children)) {
-      route.childRoutes = recursiveRouterConfigV4(item.children);
     }
-    routeMap.push(route);
-  });
-  return routeMap;
+    if (Array.isArray(item.children)) {
+      route.childRoutes = recursiveRouterConfigV4(item.children)
+    }
+    routeMap.push(route)
+  })
+  return routeMap
 }
 
 /**
@@ -43,16 +43,16 @@ function recursiveRouterConfigV4(config = []) {
  * </Switch>
  */
 function renderRouterConfigV4(container, router, contextPath) {
-  const routeChildren = [];
+  const routeChildren = []
   const renderRoute = (routeContainer, routeItem, routeContextPath) => {
-    let routePath;
+    let routePath
     if (!routeItem.path) {
       // eslint-disable-next-line
-      console.error('route must has `path`');
+      console.error('route must has `path`')
     } else if (routeItem.path === '/' || routeItem.path === '*') {
-      routePath = routeItem.path;
+      routePath = routeItem.path
     } else {
-      routePath = `/${routeContextPath}/${routeItem.path}`.replace(/\/+/g, '/');
+      routePath = `/${routeContextPath}/${routeItem.path}`.replace(/\/+/g, '/')
     }
 
     // 优先使用当前定义的 layout
@@ -67,10 +67,10 @@ function renderRouterConfigV4(container, router, contextPath) {
               routeItem.layout,
               props,
               React.createElement(routeItem.component, props)
-            );
+            )
           }}
         />
-      );
+      )
     } else if (routeContainer && routeItem.component) {
       // 使用上层节点作为 container
       routeChildren.push(
@@ -83,10 +83,10 @@ function renderRouterConfigV4(container, router, contextPath) {
               routeContainer,
               props,
               React.createElement(routeItem.component, props)
-            );
+            )
           }}
         />
-      );
+      )
     } else {
       routeChildren.push(
         <Route
@@ -95,25 +95,25 @@ function renderRouterConfigV4(container, router, contextPath) {
           path={routePath}
           component={routeItem.component}
         />
-      );
+      )
     }
 
     // 存在子路由，递归当前路径，并添加到路由中
     if (Array.isArray(routeItem.childRoutes)) {
       routeItem.childRoutes.forEach((r) => {
         // 递归传递当前 route.component 作为子节点的 container
-        renderRoute(routeItem.component, r, routePath);
-      });
+        renderRoute(routeItem.component, r, routePath)
+      })
     }
-  };
+  }
 
   router.forEach((r) => {
-    renderRoute(container, r, contextPath);
-  });
+    renderRoute(container, r, contextPath)
+  })
 
-  return <Switch>{routeChildren}</Switch>;
+  return <Switch>{routeChildren}</Switch>
 }
 
-const routerWithReactRouter4 = recursiveRouterConfigV4(routerConfig);
-const routeChildren = renderRouterConfigV4(null, routerWithReactRouter4, '/');
-export default <Router>{routeChildren}</Router>;
+const routerWithReactRouter4 = recursiveRouterConfigV4(routerConfig)
+const routeChildren = renderRouterConfigV4(null, routerWithReactRouter4, '/')
+export default <Router>{routeChildren}</Router>
