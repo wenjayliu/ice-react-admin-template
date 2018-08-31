@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-    BASC_API: '/facApi',
-    AUTH_API: '/authApi',
-    EASYMOCK_API: '/easymockApi'
+  BASC_API: '/facApi',
+  AUTH_API: '/authApi',
+  EASYMOCK_API: '/easymockApi'
 }

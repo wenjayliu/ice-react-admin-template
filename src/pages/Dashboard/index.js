@@ -3,15 +3,12 @@ import React, { Component } from 'react'
 
 // const App = asyncComponent(() => import('@src/App'));
 
-export default class Home extends Component {
-  componentDidMount() {
-  }
+export default class Dashboard extends Component {
   render() {
     return (
       <div className="home-page">
-        home
+        Dashboard
         {/* <App /> */}
-
       </div>
     )
   }

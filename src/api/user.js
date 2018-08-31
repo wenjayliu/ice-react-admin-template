@@ -5,11 +5,12 @@ import { REACT_APP_ENV } from '@src/config'
 import { loginMockData } from '@src/api/userMock'
 
 Mock.mock(/\/mockapi\/sys\/user\/getUserInfo/, 'get', loginMockData)
-export async function basicapi(params) {
+export function postLogin(data) {
   return api({
-    url: '/sys/user/getUserInfo',
-    method: 'get',
-    data: params
+    url: '/sys/login/loginChooseProjectByUserName',
+    method: 'post',
+    data,
+    BASC_URL: REACT_APP_ENV.AUTH_API
   })
 }
 

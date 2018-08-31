@@ -10,7 +10,10 @@ module.exports = {
     },
     rules: {
         'semi': [2, 'never'],
-        'indent': [2, 2],
+        "indent": ["error", 2, {
+            // list derived from https://github.com/benjamn/ast-types/blob/HEAD/def/jsx.js
+            "ignoredNodes": ['JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
+        }],
         'no-console': 0,
         "react/jsx-indent": [2, 2],
         "react/prefer-stateless-function": 0,

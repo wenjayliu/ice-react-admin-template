@@ -26,25 +26,37 @@ const asideMenuConfig = [
     name: 'Dashboard',
     path: '/dashboard',
     icon: 'home',
+    authority: ['5']
   },
   {
-    name: '测试页',
+    // 开发用测试界面
+    name: 'TestPages',
     path: '/TestPages',
-    icon: 'TestPages',
-    authority: ['66'],
+    icon: 'TestPages'
+  },
+  {
+    name: 'CountChart',
+    path: '/CountChart',
+    icon: 'CountChart',
     children: [
       {
-        name: '基础表格',
-        path: '/TestPages/basic-table',
-        authority: 'admin',
+        // 每日工作统计图表
+        name: 'EveryDadyCount',
+        path: '/CountChart/EveryDadyCount',
       },
       {
-        name: '常用竖向表格',
-        path: '/table/table-display',
-        authority: ['66'],
+        // 生产统计图表
+        name: 'Manufacture',
+        path: '/CountChart/Manufacture',
       },
-    ],
-  },
+      {
+        // 开发用测试界面
+        name: '常用竖向表格',
+        path: '/TestPages',
+        authority: ['66'],
+      }
+    ]
+  }
 ]
 
 export { headerMenuConfig, asideMenuConfig }

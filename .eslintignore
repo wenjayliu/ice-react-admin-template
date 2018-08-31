@@ -3,6 +3,7 @@ build/
 tests/
 demo/
 src/utils/asyncComponent.js
+src/utils/formData.js
 # node 覆盖率文件
 coverage/
 

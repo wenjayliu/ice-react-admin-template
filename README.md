@@ -1,5 +1,7 @@
 # 飞冰初体验
 ## 初始化项目
+`react`  `react-dom`  `mobx`  `mobx-react`  `immutable`  `axios`   `react-intl-universal`  `react-motion`  `react-router-transition` `react-app-rewired`  `echarts`  `sass`
+
 ### 多环境变量和模式 。
 我需要打包三分不同的版本，又不想运行 `eject` 那不可逆的操作，再加上貌似 react 构建的时候 `NODE_ENV` 还无法修改。
 所以我的解决方法是新建一个环境变量，通过这个环境变量再来设置全局常量。
@@ -171,14 +173,14 @@ module.exports = {
 import axios from '@src/plugins/axios'
 import { BASC_URL } from '@src/config'
 
-const MakeApi = (apiconfig, options) => {
-  console.log('api', options)
+const MakeApi = (options) => {
+  // console.log('api', options)
   if (options && options.BASC_URL) {
-    apiconfig.url = options.BASC_URL + apiconfig.url
+    options.url = options.BASC_URL + options.url
   } else {
-    apiconfig.url = BASC_URL + apiconfig.url
+    options.url = BASC_URL + options.url
   }
-  return axios(apiconfig)
+  return axios(options)
 }
 
 
@@ -188,7 +190,6 @@ export default MakeApi
 使用接口，`api/user.js` 
 
 ```js
-// import axios from '@src/plugins/axios'
 import Mock from 'mockjs'
 import api from '@src/plugins/api'
 import { REACT_APP_ENV } from '@src/config'
@@ -196,21 +197,22 @@ import { REACT_APP_ENV } from '@src/config'
 import { loginMockData } from '@src/api/userMock'
 
 Mock.mock(/\/mockapi\/sys\/user\/getUserInfo/, 'get', loginMockData)
-export async function basicapi(params) {
+export function postLogin(data) {
   return api({
-    url: '/sys/user/getUserInfo',
-    method: 'get',
-    data: params
+    url: '/sys/login/loginChooseProjectByUserName',
+    method: 'post',
+    data,
+    BASC_URL: REACT_APP_ENV.AUTH_API
   })
 }
 
-export async function login(params) {
+export async function getUserInfo(params) {
   return api({
     url: '/sys/user/getUserInfo',
     method: 'get',
-    data: params
-  }, {
-      BASC_URL: REACT_APP_ENV.AUTH_API
+    data: params,
+    noShowDefaultError: true,
+    BASC_URL: REACT_APP_ENV.AUTH_API
   })
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
 import AsideMenu from './AsideMenu'
-// import NotFound from '@src/pages/NotFound'
+import routerConfig from '@src/routerConfig'
 
 import './index.scss'
 
@@ -26,6 +27,13 @@ export default class Home extends Component {
               {/* 2.2.2 主体组件 */}
               <div className="theme-container-main-body">
                 {/* {this.props.children} */}
+                <Switch>
+                  {routerConfig.map((route, idx) => {
+                    return route.component ? (
+                      <Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => <route.component {...props} />} />
+                    ) : null
+                  })}
+                </Switch>
               </div>
             </div>
 

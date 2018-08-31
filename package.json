@@ -2,22 +2,40 @@
   "name": "@icedesign/scaffold-create-react-app",
   "version": "1.0.0",
   "private": true,
-  "keywords": ["ice-scaffold"],
+  "keywords": [
+    "ice-scaffold"
+  ],
   "description": "该模板基于 create-react-app 创建，使用 react-app-rewired 进行自定义配置，支持按需引入 ICE 基础组件，添加区块，主要适用于 0 到 1 开始搭建项目",
   "dependencies": {
+    "@icedesign/base": "^0.2.0",
+    "@icedesign/container": "^0.1.0",
     "@icedesign/skin": "^0.1.13",
     "axios": "^0.18.0",
+    "classnames": "^2.2.5",
+    "echarts": "^4.1.0",
+    "eslint-config-alloy": "^1.4.2",
+    "immutable": "^3.8.2",
+    "js-cookie": "^2.2.0",
     "lodash": "^4.17.10",
+    "mobx": "^5.1.0",
+    "mobx-react": "^5.2.5",
     "mockjs": "^1.0.1-beta3",
+    "normalize.css": "^8.0.0",
+    "prop-types": "^15.5.8",
     "react": "^16.2.0",
+    "react-app-rewire-eslint": "^0.2.3",
     "react-dom": "^16.2.0",
     "react-intl-universal": "^1.12.1",
+    "react-motion": "^0.5.2",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.1"
+    "react-router-transition": "^1.2.1",
+    "react-scripts": "1.1.1",
+    "react-svg": "^6.0.4",
+    "serve": "^10.0.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "cross-env REACT_APP_ENV=pro react-app-rewired build",
+    "build": "cross-env REACT_APP_ENV=pbe react-app-rewired build",
     "build:pbe": "cross-env REACT_APP_ENV=pbe react-app-rewired build",
     "build:pro": "cross-env REACT_APP_ENV=pro react-app-rewired build",
     "build:cus": "cross-env REACT_APP_ENV=cus react-app-rewired build",
@@ -25,11 +43,16 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "babel-eslint": "^9.0.0",
     "babel-plugin-import": "^1.6.7",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "cross-env": "^5.2.0",
+    "eslint": "^5.4.0",
+    "eslint-plugin-react": "^7.11.1",
     "ice-skin-loader": "^0.1.1",
     "node-sass": "^4.7.2",
     "react-app-rewire-aliases": "^0.2.0",
+    "react-app-rewire-mobx": "^1.0.8",
     "react-app-rewired": "^1.5.0",
     "sass-loader": "^6.0.7",
     "webpack-plugin-import": "^0.1.2"
@@ -56,21 +79,21 @@
   "title": "ice-react-admin-template",
   "proxy": {
     "/facApi": {
-      "target": "http://基础接口地址.com",
+      "target": "https://www.easy-mock.com/mock/5b88f2b2fa683f370b171b6f/fac",
       "changeOrigin": true,
       "pathRewrite": {
         "^/facapi": ""
       }
     },
     "/authApi": {
-      "target": "http://其他接口.com",
+      "target": "https://www.easy-mock.com/mock/5b88f316fa683f370b171b76/auth",
       "changeOrigin": true,
       "pathRewrite": {
         "^/authApi": ""
       }
     },
     "/easymockApi": {
-      "target": "https://www.easy-mock.com/mock",
+      "target": "https://www.easy-mock.com/mock/5b87497870367d674c2b565e/at",
       "changeOrigin": true,
       "pathRewrite": {
         "^/easymockApi": ""

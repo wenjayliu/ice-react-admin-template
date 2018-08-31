@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
+import { observer, inject } from 'mobx-react'
 // import intl from 'react-intl-universal'
 
+import asyncComponent from '@src/utils/asyncComponent'
+
 // 页面
-import BasicLayout from '@src/layouts/BasicLayout'
+import DefaultLayout from '@src/layouts'
+const LoginTest = asyncComponent(() => import('@src/pages/TestPages/LoginTest'))
 
-
-// import { Provider } from 'mobx-react'
-// import stores from '@src/stores'
-// import router from './routes'
 
 // locale data
 // const locales = {
@@ -18,10 +18,24 @@ import BasicLayout from '@src/layouts/BasicLayout'
 
 // console.log('语言', locales)
 
+@inject(stores => ({
+  GetUserInfo: stores.userinfo.GetUserInfo
+}))
+
+@observer
 class App extends Component {
-  // state = { initDone: false }
+  constructor(props) {
+    super(props)
+    this.state = {
+      initDone: false
+    }
+  }
 
   componentDidMount() {
+    this.props.GetUserInfo().then(res => {
+      console.log('f', res)
+      this.setState(() => ({ initDone: true }))
+    })
     this.loadLocales()
   }
 
@@ -35,14 +49,25 @@ class App extends Component {
     //   this.setState({ initDone: true })
     // })
   }
-  // {intl.get('TIP')}
-  render() {
+
+  // 插入路由表
+  asyncRouters() {
+    document.getElementById('GLoading').style.display = 'none'
     return (
       <HashRouter>
         <Switch>
-          <Route exact path="/" name="Home" component={BasicLayout} />
+          <Route exact path="/LoginTest" name="LoginTest" component={LoginTest} />
+          <Route path="/" name="Home" component={DefaultLayout} />
         </Switch>
       </HashRouter>
+    )
+  }
+  // {intl.get('TIP')}
+  render() {
+    return (
+      <div>
+        {this.state.initDone ? this.asyncRouters() : ''}
+      </div>
     )
   }
 }
