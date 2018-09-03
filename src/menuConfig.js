@@ -23,37 +23,36 @@ const headerMenuConfig = [
 // 侧边导航配置
 const asideMenuConfig = [
   {
+    id: 0,
     name: 'Dashboard',
     path: '/dashboard',
     icon: 'home',
-    authority: ['5']
+    authority: []
   },
   {
-    // 开发用测试界面
-    name: 'TestPages',
-    path: '/TestPages',
-    icon: 'TestPages'
-  },
-  {
+    id: 2,
     name: 'CountChart',
     path: '/CountChart',
     icon: 'CountChart',
     children: [
       {
         // 每日工作统计图表
+        id: 3,
         name: 'EveryDadyCount',
         path: '/CountChart/EveryDadyCount',
       },
       {
         // 生产统计图表
+        id: 4,
         name: 'Manufacture',
         path: '/CountChart/Manufacture',
       },
       {
         // 开发用测试界面
+        id: 5,
         name: '常用竖向表格',
         path: '/TestPages',
-        authority: ['66'],
+        authority: [],
       }
     ]
   }

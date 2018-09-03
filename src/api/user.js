@@ -20,6 +20,6 @@ export async function getUserInfo(params) {
     method: 'get',
     data: params,
     noShowDefaultError: true,
-    BASC_URL: REACT_APP_ENV.AUTH_API
+    BASC_URL: REACT_APP_ENV.MOCK_API
   })
 }

@@ -8,6 +8,7 @@ import asyncComponent from '@src/utils/asyncComponent'
 // 页面
 import DefaultLayout from '@src/layouts'
 const LoginTest = asyncComponent(() => import('@src/pages/TestPages/LoginTest'))
+const TestPages = asyncComponent(() => import('@src/pages/TestPages'))
 
 
 // locale data
@@ -57,6 +58,7 @@ class App extends Component {
       <HashRouter>
         <Switch>
           <Route exact path="/LoginTest" name="LoginTest" component={LoginTest} />
+          <Route path="/test" name="test" component={TestPages} />
           <Route path="/" name="Home" component={DefaultLayout} />
         </Switch>
       </HashRouter>

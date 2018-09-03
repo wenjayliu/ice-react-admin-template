@@ -6,5 +6,6 @@
 module.exports = {
   BASC_API: '/facApi',
   AUTH_API: '/authApi',
+  MOCK_API: '/mockapi',
   EASYMOCK_API: '/easymockApi'
 }

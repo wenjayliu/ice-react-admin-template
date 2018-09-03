@@ -1,7 +1,3 @@
-/**
- * react-motion 的测试
- * 简单的demo StaggeredMotion
- */
 import React, { Component } from 'react'
 import { StaggeredMotion, spring, presets } from 'react-motion'
 
@@ -36,6 +32,7 @@ class Test2 extends Component {
     return (
       <div>
         <div>
+          <button onClick={this.addLength.bind(this)}>run</button>
           {this.state.length > 0 ? (
             <StaggeredMotion defaultStyles={boxes} styles={prevStyles => prevStyles.map((item, i) => {
               return i === 0
@@ -53,7 +50,6 @@ class Test2 extends Component {
             </StaggeredMotion>
           ) : null}
         </div>
-        <button onClick={this.addLength.bind(this)}>run</button>
       </div>
     )
   }

@@ -2,21 +2,30 @@
 
 import asyncComponent from '@src/utils/asyncComponent'
 
+const Home = asyncComponent(() => import('@src/pages/TestPages/Home'))
 const ChildPage = asyncComponent(() => import('@src/pages/TestPages/ChildPage'))
 const AuthTest = asyncComponent(() => import('@src/pages/TestPages/AuthTest'))
 const Animation = asyncComponent(() => import('@src/pages/TestPages/Animation'))
 
 const routerConfig = [
   {
-    path: '/TestPages/ChildPage',
+    path: '/Test/Home',
+    name: 'Home',
+    component: Home,
+  },
+  {
+    path: '/Test/ChildPage',
+    name: '子路由',
     component: ChildPage,
   },
   {
-    path: '/TestPages/AuthTest',
+    path: '/Test/AuthTest',
+    name: '权限',
     component: AuthTest,
   },
   {
-    path: '/TestPages/Animation',
+    path: '/Test/Animation',
+    name: '动画',
     component: Animation,
   }
 ]

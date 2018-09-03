@@ -1,4 +1,5 @@
 .theme-container-aside-side {
+  overflow: hidden;
   .logo-group {
     // box-sizing: border-box;
     padding: 15px 40px;
@@ -20,25 +21,83 @@
     list-style: none;
   }
   .fs_menu{
-    color: #6f83a1;
+    color: #bec2c5;
     .fs_menu_li {
-      .fs_menu_wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 55px;
+      &:hover {
+        .fs_menu_wrapper {
+          color: aliceblue;
+          border-left: 2px solid #3581fb;
+        }
 
+        .icon_down_i {
+        }
       }
-      .svg-synet {
-        width: 25px;
-        height: 25px;
-      }
-      .sub_menu {
+      .fs_menu_wrapper {
         height: 55px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 10px 0 20px;
+        border-left: 2px solid #26313e;
+        cursor: pointer;
+        .icon_down_i {
+          transition: all 300ms linear;
+          transform: rotate(0deg);
+          vertical-align:bottom;
+          position: relative;
+          color: #3581fb;
+          top: 3px;
+          .icon_arrow_down {
+            width: 20px;
+            height: 20px;
+          }
+        }
+        &.open {
+          .icon_down_i {
+            transform: rotate(180deg);
+            top: 0px;
+          }
+        }
+        .svg-synet {
+          display: inline-block;
+          margin-right: 10px;
+          vertical-align:bottom;
+          width: 25px;
+          height: 25px;
+          position: relative;
+          top: 1px;
+        }
+        // 一级菜单标题
+        .fsmenu_name {
+          width: 180px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+
+      // 二级菜单
+      .sub_menu {
         overflow: hidden;
+        height: 0px;
+        transition: all 300ms linear;
       }
       .sub_menu_li {
-        height: 55px;
+        padding: 0 20px 0px 70px;
+        height: 40px;
+        width: 100%;
+        line-height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+        &:hover {
+          color: aliceblue;
+        }
+        &.active {
+          background-color: #3581fb;
+          color: aliceblue;
+        }
       }
     }
   }

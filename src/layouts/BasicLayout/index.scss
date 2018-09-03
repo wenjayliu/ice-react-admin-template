@@ -23,6 +23,7 @@
   bottom: 0px;
   width: 208px;
   background:#26313e;
+  overflow: hidden;
 }
 
 // 主体
@@ -33,9 +34,9 @@
   right: 0;
   bottom: 0px;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   flex-grow: 1;
-  overflow: hidden;
   padding: 0;
   background-color: #f3f5f8;
 }
